@@ -1,11 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github, Code, Zap, Shield, Palette } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useDocumentMeta } from "@/hooks/useDocumentTitle";
 
 const About: React.FC = () => {
 	// Dynamic title management
-	useDocumentTitle("About", "React Vite TypeScript App");
+	useDocumentMeta({
+		title: "About",
+		siteName: "React Vite TypeScript App",
+		separator: "|",
+	});
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12 px-4">
 			<div className="max-w-4xl mx-auto">
@@ -156,30 +160,146 @@ const About: React.FC = () => {
 					</div>
 				</div>
 
-				{/* Getting Started */}
-				<div className="bg-slate-800 text-white p-8 rounded-lg shadow-lg">
+				{/* Getting Started & GitHub Integration */}
+				<div className="bg-slate-800 text-white p-8 rounded-lg shadow-lg mb-8">
 					<h2 className="text-3xl font-bold mb-6 flex items-center">
 						<Github className="mr-3" />
-						Getting Started
+						Development & GitHub Integration
 					</h2>
-					<div className="space-y-4">
-						<div>
-							<h3 className="text-xl font-semibold mb-2">Development Server</h3>
-							<code className="bg-slate-700 px-3 py-1 rounded text-sm">
-								npm run dev
-							</code>
+
+					{/* Development Commands */}
+					<div className="mb-8">
+						<h3 className="text-2xl font-semibold mb-4 text-slate-300">
+							Quick Start Commands
+						</h3>
+						<div className="grid md:grid-cols-2 gap-4">
+							<div className="bg-slate-700 p-4 rounded">
+								<h4 className="text-lg font-semibold mb-2">
+									Development Server
+								</h4>
+								<code className="bg-slate-600 px-3 py-1 rounded text-sm block mb-2">
+									npm run dev
+								</code>
+								<p className="text-slate-300 text-sm">
+									Starts Vite dev server with HMR on port 5173
+								</p>
+							</div>
+							<div className="bg-slate-700 p-4 rounded">
+								<h4 className="text-lg font-semibold mb-2">Production Build</h4>
+								<code className="bg-slate-600 px-3 py-1 rounded text-sm block mb-2">
+									npm run build
+								</code>
+								<p className="text-slate-300 text-sm">
+									Creates optimized production build in dist/
+								</p>
+							</div>
+							<div className="bg-slate-700 p-4 rounded">
+								<h4 className="text-lg font-semibold mb-2">Preview Build</h4>
+								<code className="bg-slate-600 px-3 py-1 rounded text-sm block mb-2">
+									npm run serve
+								</code>
+								<p className="text-slate-300 text-sm">
+									Preview production build locally
+								</p>
+							</div>
+							<div className="bg-slate-700 p-4 rounded">
+								<h4 className="text-lg font-semibold mb-2">Add UI Component</h4>
+								<code className="bg-slate-600 px-3 py-1 rounded text-sm block mb-2">
+									npx shadcn@latest add button
+								</code>
+								<p className="text-slate-300 text-sm">
+									Add Shadcn/UI components to your project
+								</p>
+							</div>
 						</div>
-						<div>
-							<h3 className="text-xl font-semibold mb-2">Production Build</h3>
-							<code className="bg-slate-700 px-3 py-1 rounded text-sm">
-								npm run build
-							</code>
+					</div>
+
+					{/* GitHub Actions & CI/CD */}
+					<div>
+						<h3 className="text-2xl font-semibold mb-4 text-slate-300">
+							Recommended GitHub Actions
+						</h3>
+						<div className="bg-slate-700 p-4 rounded">
+							<h4 className="text-lg font-semibold mb-2">
+								Continuous Integration
+							</h4>
+							<ul className="text-slate-300 space-y-1 text-sm">
+								<li>
+									• <strong>Automated Testing:</strong> Run ESLint and
+									TypeScript checks
+								</li>
+								<li>
+									• <strong>Build Verification:</strong> Ensure production build
+									works
+								</li>
+								<li>
+									• <strong>Dependency Security:</strong> Check for
+									vulnerabilities
+								</li>
+								<li>
+									• <strong>Auto Deploy:</strong> Deploy to Vercel/Netlify on
+									main branch
+								</li>
+							</ul>
 						</div>
-						<div>
-							<h3 className="text-xl font-semibold mb-2">Add New Component</h3>
-							<code className="bg-slate-700 px-3 py-1 rounded text-sm">
-								npx shadcn@latest add [component-name]
-							</code>
+					</div>
+				</div>
+
+				{/* Navigation to Example Components */}
+				<div className="relative bg-gradient-to-r from-slate-50 to-slate-100 border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-8">
+					<div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-indigo-600 rounded-l-xl"></div>
+
+					<div className="flex items-center justify-between">
+						<div className="flex-1">
+							<div className="flex items-center mb-5">
+								<div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mr-4 shadow-md">
+									<Code className="h-6 w-6 text-white" />
+								</div>
+								<div>
+									<h2 className="text-2xl font-bold text-slate-900 mb-1">
+										Hook Kullanım Örnekleri
+									</h2>
+									<p className="text-sm text-slate-600 font-medium">
+										Pratik implementasyon rehberi
+									</p>
+								</div>
+							</div>
+
+							<p className="text-slate-700 mb-6 leading-relaxed text-[15px]">
+								useDocumentMeta hook'unun farklı senaryolarda kullanımına dair
+								detaylı kod örnekleri, en iyi pratikler ve TypeScript tip
+								tanımları ile birlikte kapsamlı bir rehber.
+							</p>
+
+							<div className="flex items-center space-x-8 mb-6">
+								<div className="flex items-center bg-blue-50 px-3 py-1.5 rounded-full">
+									<div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+									<span className="text-sm font-medium text-blue-700">
+										React Hooks
+									</span>
+								</div>
+								<div className="flex items-center bg-indigo-50 px-3 py-1.5 rounded-full">
+									<div className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></div>
+									<span className="text-sm font-medium text-indigo-700">
+										TypeScript
+									</span>
+								</div>
+								<div className="flex items-center bg-slate-50 px-3 py-1.5 rounded-full">
+									<div className="w-2 h-2 bg-slate-500 rounded-full mr-2"></div>
+									<span className="text-sm font-medium text-slate-700">
+										Meta Yönetimi
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div className="ml-8">
+							<Link to="/example-components">
+								<Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg px-6 py-2.5 rounded-lg transition-all duration-200 font-medium">
+									<Code className="mr-2 h-4 w-4" />
+									Örnekleri İncele
+								</Button>
+							</Link>
 						</div>
 					</div>
 				</div>

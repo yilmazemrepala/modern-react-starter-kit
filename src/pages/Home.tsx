@@ -2,13 +2,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Info } from "lucide-react";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useDocumentMeta } from "@/hooks/useDocumentTitle";
 
 const Home: React.FC = () => {
 	const [count, setCount] = useState<number>(0);
 
 	// Dynamic title management
-	useDocumentTitle("Home", "React Vite TypeScript App");
+	useDocumentMeta({
+		title: "Home",
+		siteName: "React Vite TypeScript App",
+		separator: "|",
+	});
 
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-center space-y-8 bg-gradient-to-br from-slate-50 to-slate-100">

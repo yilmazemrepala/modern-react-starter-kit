@@ -140,56 +140,193 @@ npx shadcn@latest add [component-name]
 - **Icons**: Lucide React icons integrated throughout the app
 - **Layout**: Responsive grid and flexbox utilities
 
-## 🔧 Dynamic Title Management
+## 🔧 Dynamic Title and Meta Tag Management
 
-This project implements modern dynamic title and meta tag management using custom React hooks:
+This project implements modern dynamic title and meta tag management using a powerful custom React hook. The `useDocumentMeta` hook provides comprehensive SEO optimization capabilities for your React applications.
 
-### Basic Usage
+### 🚀 Key Features
 
-```typescript
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+- **Dynamic Title Management**: Update page titles based on route or component state
+- **Meta Tag Control**: Manage description, keywords, and social media tags
+- **SEO Optimization**: Improve search engine visibility with proper meta tags
+- **Social Media Ready**: Automatic Open Graph and Twitter Card support
+- **TypeScript Support**: Full type safety and IntelliSense
+- **Favicon Management**: Dynamic favicon updates per page
+- **Template System**: Flexible title formatting options
 
-const MyPage: React.FC = () => {
-	useDocumentTitle("Page Title", "Site Name");
-	return <div>...</div>;
-};
-```
+### 📚 Hook Documentation
 
-### Dynamic Meta Tags with useDocumentMeta
+#### useDocumentMeta (Complete Solution)
 
-```typescript
-import { useDocumentTitleAdvanced } from "@/hooks/useDocumentTitle";
-
-const MyPage: React.FC = () => {
-	useDocumentTitleAdvanced({
-		title: "Page Title",
-		siteName: "My App",
-		separator: "•",
-		template: "%s - Custom Template",
-	});
-	return <div>...</div>;
-};
-```
-
-### Advanced Usage
+The main hook that handles all document meta management:
 
 ```typescript
 import { useDocumentMeta } from "@/hooks/useDocumentTitle";
 
 const MyPage: React.FC = () => {
 	useDocumentMeta({
-		title: "Page Title",
-		description: "This is an example description.",
-		keywords: ["React", "TypeScript", "SEO"],
-		favicon: "/path/to/favicon.ico",
-		image: "/path/to/site-image.png",
-		siteName: "My App",
-		separator: "|",
-		template: "%s - Custom Template",
+		title: "Product Details",
+		description:
+			"Explore our amazing product with detailed specifications and customer reviews.",
+		keywords: ["product", "ecommerce", "reviews", "specifications"],
+		favicon: "/icons/product-favicon.ico",
+		image: "/images/product-social-share.jpg",
+		siteName: "My E-commerce Store",
+		separator: "•",
 	});
-	return <div>...</div>;
+
+	return <div>Your page content...</div>;
 };
 ```
+
+#### Available Options
+
+| Option        | Type       | Required | Description              | Example                            |
+| ------------- | ---------- | -------- | ------------------------ | ---------------------------------- | --- |
+| `title`       | `string`   | ✅       | Page title               | `"Product Details"`                |
+| `description` | `string`   | ❌       | Meta description for SEO | `"Explore our amazing product..."` |
+| `keywords`    | `string[]` | ❌       | SEO keywords array       | `["product", "ecommerce"]`         |
+| `favicon`     | `string`   | ❌       | Path to favicon          | `"/icons/favicon.ico"`             |
+| `image`       | `string`   | ❌       | Social sharing image     | `"/images/og-image.jpg"`           |
+| `siteName`    | `string`   | ❌       | Site/app name            | `"My App"`                         |
+| `separator`   | `string`   | ❌       | Title separator          | `"•"` or `"                        | "`  |
+
+#### Template System
+
+The template uses `%s` as a placeholder for the page title:
+
+### 🎯 Common Usage Patterns
+
+#### 1. Basic Page Setup
+
+```typescript
+useDocumentMeta({
+	title: "Home",
+	siteName: "My React App",
+	separator: "|",
+});
+// Result: "Home | My React App"
+```
+
+#### 2. SEO Optimized Page
+
+```typescript
+useDocumentMeta({
+	title: "React Development Services",
+	description:
+		"Professional React development services with modern tools and best practices. Contact us for your next project.",
+	keywords: ["React", "development", "services", "TypeScript", "modern web"],
+	siteName: "DevCorp Solutions",
+	separator: "•",
+});
+```
+
+#### 3. Dynamic Content Pages
+
+```typescript
+const ProductPage: React.FC = () => {
+	const { product } = useParams();
+
+	useDocumentMeta({
+		title: `${product?.name} - Product Details`,
+		description: product?.description,
+		keywords: product?.tags,
+		image: product?.featuredImage,
+		siteName: "E-Commerce Store",
+	});
+
+	return <div>Product details...</div>;
+};
+```
+
+#### 4. Blog/Article Pages
+
+```typescript
+const BlogPost: React.FC = () => {
+	const { post } = useLoaderData();
+
+	useDocumentMeta({
+		title: post.title,
+		description: post.excerpt,
+		keywords: [...post.tags, "blog", "article"],
+		image: post.featuredImage,
+		siteName: "Tech Blog",
+		separator: "→",
+	});
+
+	return <article>...</article>;
+};
+```
+
+### 🔍 SEO Best Practices
+
+#### Title Optimization
+
+- Keep titles between **50-60 characters**
+- Include primary keywords near the beginning
+- Make titles descriptive and unique per page
+- Use consistent separators across your site
+
+#### Meta Description
+
+- Aim for **150-160 characters**
+- Write compelling, actionable descriptions
+- Include target keywords naturally
+- Each page should have a unique description
+
+#### Keywords
+
+- Use **3-8 relevant keywords** per page
+- Include both short-tail and long-tail keywords
+- Avoid keyword stuffing
+- Research competitor keywords
+
+#### Social Media Optimization
+
+- Use high-quality images (1200x630px for Open Graph)
+- Ensure images are optimized for web
+- Test social sharing previews
+- Include branded elements in social images
+
+### 🧪 Live Examples
+
+Visit the **Example Components** page in the application to see the hook in action with:
+
+- ✅ Live meta tag updates
+- ✅ Interactive code examples
+- ✅ TypeScript integration
+- ✅ Best practices guide
+- ✅ Real-time preview of changes
+
+Navigate to `/example-components` to explore comprehensive usage examples and see how the hook dynamically updates your page's meta information.
+
+### ⚙️ TypeScript Integration
+
+The hook is fully typed for enhanced developer experience:
+
+```typescript
+interface DocumentMetaOptions {
+	title: string;
+	description?: string;
+	keywords?: string[];
+	favicon?: string;
+	image?: string;
+	siteName?: string;
+	separator?: string;
+	template?: string;
+}
+
+// Full type safety and IntelliSense support
+const useDocumentMeta: (options: DocumentMetaOptions) => void;
+```
+
+### 🚨 Important Notes
+
+- The hook uses `useEffect` to update the document head
+- Meta tags are updated on component mount and when dependencies change
+- Previous meta tags are automatically cleaned up
+- Works seamlessly with React Router for SPA navigation
+- Compatible with SSR frameworks (Next.js, Remix, etc.)
 
 ## 📱 Responsive Design
 

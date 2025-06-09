@@ -1,58 +1,5 @@
 import { useEffect } from "react";
 
-/**
- * Custom hook to manage document title dynamically
- * @param title - The title to set for the page
- * @param defaultTitle - Default title to fallback to (optional)
- */
-export const useDocumentTitle = (
-	title: string,
-	defaultTitle?: string
-): void => {
-	useEffect(() => {
-		const previousTitle = document.title;
-
-		// Set the new title with optional prefix
-		const newTitle = defaultTitle ? `${title} | ${defaultTitle}` : title;
-		document.title = newTitle;
-
-		// Cleanup function to restore previous title (optional)
-		return () => {
-			document.title = previousTitle;
-		};
-	}, [title, defaultTitle]);
-};
-
-/**
- * Alternative hook with more features for SEO
- * @param options - Configuration object for title management
- */
-interface DocumentTitleOptions {
-	title: string;
-	siteName?: string;
-	separator?: string;
-	template?: string;
-}
-
-export const useDocumentTitleAdvanced = (
-	options: DocumentTitleOptions
-): void => {
-	const { title, siteName, separator = "|", template } = options;
-
-	useEffect(() => {
-		let newTitle = title;
-
-		// Apply template if provided (e.g., "%s - My Site")
-		if (template) {
-			newTitle = template.replace("%s", title);
-		} else if (siteName) {
-			newTitle = `${title} ${separator} ${siteName}`;
-		}
-
-		document.title = newTitle;
-	}, [title, siteName, separator, template]);
-};
-
 interface DocumentMetaOptions {
 	title: string;
 	description?: string;
@@ -61,7 +8,6 @@ interface DocumentMetaOptions {
 	image?: string;
 	siteName?: string;
 	separator?: string;
-	template?: string;
 }
 
 export const useDocumentMeta = (options: DocumentMetaOptions): void => {
@@ -73,21 +19,17 @@ export const useDocumentMeta = (options: DocumentMetaOptions): void => {
 		image,
 		siteName,
 		separator = "|",
-		template,
 	} = options;
 
 	useEffect(() => {
-		let newTitle = title;
-
-		// Apply template if provided (e.g., "%s - My Site")
-		if (template) {
-			newTitle = template.replace("%s", title);
-		} else if (siteName) {
-			newTitle = `${title} ${separator} ${siteName}`;
+		// Set the document title
+		if (title) {
+			document.title = title;
 		}
 
-		// Set the document title
-		document.title = newTitle;
+		if (siteName) {
+			document.title = `${title} ${separator} ${siteName}`;
+		}
 
 		// Set the meta description
 		if (description) {
@@ -132,14 +74,5 @@ export const useDocumentMeta = (options: DocumentMetaOptions): void => {
 			}
 			metaImage.setAttribute("content", image);
 		}
-	}, [
-		title,
-		description,
-		keywords,
-		favicon,
-		image,
-		siteName,
-		separator,
-		template,
-	]);
+	}, [title, description, keywords, favicon, image, siteName, separator]);
 };
