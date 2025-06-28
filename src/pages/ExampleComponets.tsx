@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDocumentMeta } from "@/hooks/useDocumentTitle";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Code, Eye, Settings, Lightbulb } from "lucide-react";
@@ -50,13 +50,17 @@ const ExampleComponents: React.FC = () => {
 		},
 		{
 			id: 3,
-			title: "Custom Template Usage",
-			description: "Using template system with %s placeholder",
+			title: "Social Media Optimized",
+			description: "Perfect for blog posts and social sharing",
 			code: `useDocumentMeta({
-  title: "User Profile",
-  siteName: "SocialApp",	
+  title: "10 React Tips for Better Performance",
+  description: "Discover essential React optimization techniques that will boost your app's performance and user experience.",
+  keywords: ["React", "Performance", "Optimization", "Web Development"],
+  image: "/images/blog-react-tips.jpg",
+  siteName: "DevBlog",
+  separator: "—"
 });
-// Result: "User Profile - Welcome to SocialApp"`,
+// Result: "10 React Tips for Better Performance — DevBlog"`,
 		},
 	];
 

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github, Code, Zap, Shield, Palette } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useDocumentMeta } from "@/hooks/useDocumentTitle";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const About: React.FC = () => {
 	// Dynamic title management
@@ -246,9 +246,9 @@ const About: React.FC = () => {
 				</div>
 
 				{/* Navigation to Example Components */}
-				<div className="relative bg-gradient-to-r from-slate-50 to-slate-100 border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-8">
-					<div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-indigo-600 rounded-l-xl"></div>
-
+				<Link
+					to="/example-components"
+					className="block relative bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 border border-slate-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-8">
 					<div className="flex items-center justify-between">
 						<div className="flex-1">
 							<div className="flex items-center mb-5">
@@ -257,18 +257,18 @@ const About: React.FC = () => {
 								</div>
 								<div>
 									<h2 className="text-2xl font-bold text-slate-900 mb-1">
-										Hook Kullanım Örnekleri
+										Hook Usage Examples
 									</h2>
 									<p className="text-sm text-slate-600 font-medium">
-										Pratik implementasyon rehberi
+										Practical Implementation Guide
 									</p>
 								</div>
 							</div>
 
 							<p className="text-slate-700 mb-6 leading-relaxed text-[15px]">
-								useDocumentMeta hook'unun farklı senaryolarda kullanımına dair
-								detaylı kod örnekleri, en iyi pratikler ve TypeScript tip
-								tanımları ile birlikte kapsamlı bir rehber.
+								A comprehensive guide featuring detailed code examples of the
+								useDocumentMeta hook in various scenarios, best practices, and
+								TypeScript type definitions.
 							</p>
 
 							<div className="flex items-center space-x-8 mb-6">
@@ -287,22 +287,20 @@ const About: React.FC = () => {
 								<div className="flex items-center bg-slate-50 px-3 py-1.5 rounded-full">
 									<div className="w-2 h-2 bg-slate-500 rounded-full mr-2"></div>
 									<span className="text-sm font-medium text-slate-700">
-										Meta Yönetimi
+										Meta Management
 									</span>
 								</div>
 							</div>
 						</div>
 
 						<div className="ml-8">
-							<Link to="/example-components">
-								<Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg px-6 py-2.5 rounded-lg transition-all duration-200 font-medium">
-									<Code className="mr-2 h-4 w-4" />
-									Örnekleri İncele
-								</Button>
-							</Link>
+							<Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg px-6 py-2.5 rounded-lg transition-all duration-200 font-medium pointer-events-none">
+								<Code className="mr-2 h-4 w-4" />
+								View Examples
+							</Button>
 						</div>
 					</div>
-				</div>
+				</Link>
 			</div>
 		</div>
 	);

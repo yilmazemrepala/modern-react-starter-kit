@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Info } from "lucide-react";
-import { useDocumentMeta } from "@/hooks/useDocumentTitle";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const Home: React.FC = () => {
 	const [count, setCount] = useState<number>(0);

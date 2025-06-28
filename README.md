@@ -73,7 +73,7 @@ src/
 ├── components/           # Reusable UI components
 │   └── ui/              # Shadcn/UI components
 ├── hooks/               # Custom React hooks
-│   └── useDocumentTitle.ts  # Dynamic title management
+│   └── useDocumentMeta.ts  # Dynamic title management
 ├── pages/               # Page components
 │   ├── Home.tsx         # Home page with counter example
 │   └── About.tsx        # About page with project info
@@ -161,7 +161,7 @@ This project implements modern dynamic title and meta tag management using a pow
 The main hook that handles all document meta management:
 
 ```typescript
-import { useDocumentMeta } from "@/hooks/useDocumentTitle";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const MyPage: React.FC = () => {
 	useDocumentMeta({
@@ -478,7 +478,7 @@ RewriteRule . /index.html [L]
 
 1. Create a new component in `src/pages/`
 2. Add route to `src/App.tsx`
-3. Implement dynamic title with `useDocumentTitle`
+3. Implement dynamic title with `useDocumentMeta`
 
 ### Adding New Components
 
