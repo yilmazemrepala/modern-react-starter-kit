@@ -154,7 +154,7 @@ const About: React.FC = () => {
 							</div>
 							<h3 className="font-semibold text-slate-800 mb-2">Modern UI</h3>
 							<p className="text-slate-600 text-sm">
-								Tailwind CSS v4 ve Shadcn/UI ile güzel tasarım
+								Beautiful design with Tailwind CSS v4 and Shadcn/UI
 							</p>
 						</div>
 					</div>
